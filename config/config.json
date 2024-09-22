@@ -1,0 +1,36 @@
+{
+  "site": {
+    "title": "Pixel Petal",
+    "base_url": "/",
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo.png",
+    "logo_width": "200",
+    "logo_height": "48",
+    "logo_text": "Pixel Petal"
+  },
+
+  "settings": {
+    "pagination": 4,
+    "summary_length": 200,
+    "blog_folder": "blogs"
+  },
+
+  "nav_button": {
+    "enable": true,
+    "label": "Contact",
+    "link": "/contact"
+  },
+
+  "params": {
+    "contact_form_action": "",
+    "tag_manager_id": "",
+    "footer_content": "We Develop what you Think",
+    "copyright": "Designed and Developed By Pixel Petal"
+  },
+
+  "metadata": {
+    "meta_author": "Pixel Petal",
+    "meta_image": "",
+    "meta_description": ""
+  }
+}
