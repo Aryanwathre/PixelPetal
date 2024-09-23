@@ -5,7 +5,32 @@ import { markdownify } from "@lib/utils/textConverter";
 const Contact = ({ data }) => {
   const { frontmatter } = data;
   const { title, info } = frontmatter;
-  const { contact_form_action } = config.params;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/api/sendEmail', { // Endpoint for the API route
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert('Your message has been sent!');
+        e.target.reset(); // Optional: Reset form fields after submission
+      } else {
+        alert('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }
+  };
 
   return (
     <section className="section bg-gray-100 py-12">
@@ -18,32 +43,7 @@ const Contact = ({ data }) => {
           <div className="w-full md:w-2/3">
             <form
               className="contact-form bg-white shadow-md rounded-lg p-8"
-              method="POST"
-              action={contact_form_action}
-              onSubmit={async (e) => {
-                e.preventDefault();
-
-                const formData = new FormData(e.target);
-                const data = Object.fromEntries(formData.entries());
-
-                try {
-                  const response = await fetch(contact_form_action, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data),
-                  });
-
-                  const result = await response.json();
-                  if (response.ok) {
-                    alert('Your message has been sent!');
-                  } else {
-                    alert('Failed to send message. Please try again.');
-                  }
-                } catch (error) {
-                  console.error('Error:', error);
-                  alert('An error occurred. Please try again.');
-                }
-              }}
+              onSubmit={handleSubmit} // Handle form submission
             >
               <div className="mb-6">
                 <input
@@ -81,6 +81,7 @@ const Contact = ({ data }) => {
                   required
                 />
               </div>
+
               <button
                 type="submit"
                 className="btn btn-primary w-full py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition duration-200"

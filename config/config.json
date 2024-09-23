@@ -22,7 +22,7 @@
   },
 
   "params": {
-    "contact_form_action": "",
+    "contact_form_action": "/api/contact",
     "tag_manager_id": "",
     "footer_content": "We Develop what you Think",
     "copyright": "Designed and Developed By Pixel Petal"
@@ -33,4 +33,5 @@
     "meta_image": "",
     "meta_description": ""
   }
+
 }

@@ -41,9 +41,10 @@ const Services = ({ services }) => {
                   alt={`service-${i}`}
                   sizes="100px"
                   style={{
+
                     width: "100px", // Fixed width
                     height: "100px", // Fixed height
-                    objectFit: "cover", // Ensure the image maintains aspect ratio and fills the space
+                    objectFit: "contain", // Ensure the image maintains aspect ratio and fills the space
                     borderRadius: "8px",
                   }}
                 />
